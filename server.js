@@ -17,10 +17,10 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('user-connected', name)
   })
 
-  socket.on('chat-message', data => {
-    appendMessage(`${data.name}: ${data.message}`)
-  })
-  
+  socket.on('chat message', message => {
+    io.emit('chat message', { message: message, name: users[socket.id] });
+  });
+
   socket.on('disconnect', () => {
     socket.broadcast.emit('user-disconnected', users[socket.id])
     delete users[socket.id]
