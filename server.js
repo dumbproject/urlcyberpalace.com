@@ -12,9 +12,19 @@ app.get('/', (req, res) => {
 const users = {}
 
 io.on('connection', (socket) => {
+  socket.on('new-user', name => {
+    users[socket.id] = name
+    socket.broadcast.emit('user-connected', name)
+  })
+
   socket.on('chat message', msg => {
     io.emit('chat message', msg);
   });
+  
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('user-disconnected', users[socket.id])
+    delete users[socket.id]
+  })
 });
 
 http.listen(port, () => {

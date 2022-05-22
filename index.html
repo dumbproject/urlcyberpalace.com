@@ -31,6 +31,11 @@
       var form = document.getElementById('form');
       var input = document.getElementById('input');
 
+      const name = prompt('What is your name?')
+      appendMessage(`You joined as user ${name}`)
+
+
+
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
@@ -45,6 +50,12 @@
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });
+
+      function appendMessage(message) {
+        const messageElement = document.createElement('li')
+        messageElement.innerText = message
+        messages.append(messageElement)
+      }
     </script>
   </body>
 </html>
