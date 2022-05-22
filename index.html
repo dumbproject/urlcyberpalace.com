@@ -33,13 +33,13 @@
 
       const name = prompt('What is your name?')
       appendMessage(`You joined as user ${name}`)
-
-
+      socket.emit('new-user', name)
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-        if (input.value) {
-          socket.emit('chat message', input.value);
+        const message = input.value
+        if (message) {
+          socket.emit('chat message', message);
           input.value = '';
         }
       });
