@@ -3,11 +3,11 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const port = process.env.PORT || 3000
 
-console.log('greetings earthlings\nwe runnin shit...\n')
+console.log('\n\ngreetings earthlings\nwe runnin shit......\n\n')
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-  console.log('a new user connected to the site')
+  res.sendFile(__dirname + '/index.html')
+  console.log('### a new user connected to the site')
 })
 
 const users = {}
