@@ -2,6 +2,7 @@ const app = require('express')()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const port = process.env.PORT || 3000
+var os = require('os');
 
 console.log('\n\ngreetings earthlings\nwe runnin shit......\n\n')
 
@@ -15,8 +16,11 @@ const users = {}
 
 io.on('connection', (socket) => {
   var clientIp = socket.request.connection.remoteAddress
-  console.log (clientIp)
-  
+  console.log(clientIp)
+  console.log(os.type())
+  console.log(os.release())
+  console.log(os.platform())
+
   socket.on('new-user', name => {
     users[socket.id] = name
     socket.broadcast.emit('user-connected', name)
