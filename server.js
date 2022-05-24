@@ -16,17 +16,18 @@ io.on('connection', (socket) => {
   socket.on('new-user', name => {
     users[socket.id] = name
     socket.broadcast.emit('user-connected', name)
-    console.log('user connected', name)
+    console.log('### user connected:', name)
   })
 
   socket.on('chat message', message => {
     io.emit('chat message', message);
+    console.log(message)
   });
 
   socket.on('disconnect', () => {
     socket.broadcast.emit('user-disconnected', users[socket.id])
     delete users[socket.id]
-    console.log('user disconnected')
+    console.log('### user disconnected:', name)
   })
 });
 
