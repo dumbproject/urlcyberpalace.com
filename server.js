@@ -21,13 +21,14 @@ io.on('connection', (socket) => {
 
   socket.on('chat message', message => {
     io.emit('chat message', message);
+    // socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
     console.log(message)
   });
 
   socket.on('disconnect', () => {
     socket.broadcast.emit('user-disconnected', users[socket.id])
+    console.log('### user disconnected:', users[socket.id])
     delete users[socket.id]
-    console.log('### user disconnected:', name)
   })
 });
 
