@@ -17,13 +17,13 @@ io.on('connection', (socket) => {
     users[socket.id] = name
     socket.broadcast.emit('user-connected', name)
     console.log('### user connected:', name)
-    console.log(socket.id)
+    console.log('### socket.id:', socket.id)
   })
 
   socket.on('chat message', message => {
-    io.emit('chat message', users[socket.id] + message);
+    io.emit('chat message', users[socket.id] + ': ' + message);
     // socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
-    console.log(message)
+    console.log(users[socket.id] + ': ' + message)
   });
 
   socket.on('disconnect', () => {
