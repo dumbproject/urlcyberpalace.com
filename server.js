@@ -16,7 +16,7 @@ const users = {}
 io.on('connection', (socket) => {
   socket.on('new-user', name => {
     users[socket.id] = name
-    socket.broadcast.emit('user-connected', name)
+    socket.emit('user-connected', name)
     console.log('### user connected:', name, '\n### socket.id:', socket.id)
   })
 
@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    socket.broadcast.emit('user-disconnected', users[socket.id])
+    socket.emit('user-disconnected', users[socket.id])
     console.log('### user disconnected:', users[socket.id])
     delete users[socket.id]
   })
