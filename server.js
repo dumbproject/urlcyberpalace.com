@@ -13,13 +13,20 @@ app.get('/', (req, res) => {
 
 const users = {}
 
+var now = new Date()
+  , hours = ('0' + now.getHours()).slice(-2)
+  , minutes = ('0' + now.getMinutes()).slice(-2)
+  , seconds = ('0' + now.getSeconds()).slice(-2)
+  , time = [hours, minutes, seconds].join(':')
+
+
 
 io.on('connection', (socket) => {
   var clientIp = socket.request.connection.remoteAddress
   console.log(clientIp)
-  console.log(os.type())
-  console.log(os.release())
-  console.log(os.platform())
+  // console.log(os.type())
+  // console.log(os.release())
+  // console.log(os.platform())
 
   socket.on('new-user', name => {
     users[socket.id] = name
@@ -28,9 +35,9 @@ io.on('connection', (socket) => {
   })
 
   socket.on('chat message', message => {
-    io.emit('chat message', users[socket.id] + ': ' + message)
+    io.emit('chat message', now + ' ' + users[socket.id] + ': ' + message)
     // socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
-    console.log(users[socket.id] + ': ' + message)
+    console.log(now + ' ' + users[socket.id] + ': ' + message)
   })
 
   socket.on('disconnect', () => {
