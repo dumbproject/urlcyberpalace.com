@@ -37,9 +37,9 @@ io.on('connection', (socket) => {
   })
 
   socket.on('chat message', message => {
-    io.emit('chat message', currentTime() + ' ' + users[socket.id] + ': ' + message)
+    io.emit('chat message', currentTime() + ' | ' + users[socket.id] + ': ' + message)
     // socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
-    console.log(currentTime() + ' ' + users[socket.id] + ': ' + message)
+    console.log(currentTime() + ' | ' + users[socket.id] + ': ' + message)
   })
 
   socket.on('disconnect', () => {
