@@ -13,12 +13,14 @@ app.get('/', (req, res) => {
 
 const users = {}
 
-var now = new Date()
+function currentTime() {
+  var now = new Date()
   , hours = ('0' + now.getHours()).slice(-2)
   , minutes = ('0' + now.getMinutes()).slice(-2)
   , seconds = ('0' + now.getSeconds()).slice(-2)
   , time = [hours, minutes, seconds].join(':')
-
+  return time
+}
 
 
 io.on('connection', (socket) => {
@@ -35,9 +37,9 @@ io.on('connection', (socket) => {
   })
 
   socket.on('chat message', message => {
-    io.emit('chat message', time + ' ' + users[socket.id] + ': ' + message)
+    io.emit('chat message', currentTime() + ' ' + users[socket.id] + ': ' + message)
     // socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
-    console.log(time + ' ' + users[socket.id] + ': ' + message)
+    console.log(currentTime() + ' ' + users[socket.id] + ': ' + message)
   })
 
   socket.on('disconnect', () => {
