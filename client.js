@@ -1,3 +1,4 @@
+// i did not get this script to work yet
 var socket = io()
 
 var messages = document.getElementById('messages')
