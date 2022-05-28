@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
   console.log('### a new user connected to the site')
 })
+app.get('/home.html', (req, res) => {
+  res.sendFile(__dirname + '/home.html')
+  // console.log('### a new user connected to the site')
+})
 
 const users = {}
 console.log('users:', users)
