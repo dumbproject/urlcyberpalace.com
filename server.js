@@ -4,7 +4,7 @@ const io = require('socket.io')(http)
 const port = process.env.PORT || 3000
 var os = require('os');
 
-console.log('\n############################\n### greetings earthlings ###\n### we runnin shit...... ###\n############################\n')
+console.log('\n\ngreetings earthlings\nwe runnin shit......\n\n')
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
@@ -56,5 +56,5 @@ io.on('connection', (socket) => {
 })
 
 http.listen(port, () => {
-  console.log(`👂👁️👄👁️👂 server listening on port ${port}`)
+  console.log(`server running on port ${port}`)
 })
