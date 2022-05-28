@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 })
 
 const users = {}
+console.log('users:', users)
 
 function currentTime() {
   var now = new Date()
@@ -34,6 +35,7 @@ io.on('connection', (socket) => {
     users[socket.id] = name
     socket.broadcast.emit('user-connected', name)
     console.log('### user connected:', name, '\n### socket.id:', socket.id)
+    console.log('total users:', users)
   })
 
   socket.on('chat message', message => {
