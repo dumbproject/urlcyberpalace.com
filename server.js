@@ -19,7 +19,8 @@ const users = {}
 console.log('users:', users)
 
 function currentTime() {
-  var now = new Date()
+  var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+  var now = changeTimeZone(new Date(), timezone)
   , hours = ('0' + now.getHours()).slice(-2)
   , minutes = ('0' + now.getMinutes()).slice(-2)
   , seconds = ('0' + now.getSeconds()).slice(-2)
