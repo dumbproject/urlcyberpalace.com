@@ -1,6 +1,4 @@
 const app = require('express')()
-const http = require('http').createServer(app)
-const https = require('https').createServer(credentials, app)
 const io = require('socket.io')(https)
 const port = process.env.PORT || 3000
 const fs = require('fs')
@@ -15,6 +13,9 @@ const credentials = {
   cert: certificate,
   ca: ca
 }
+
+const http = require('http').createServer(app)
+const https = require('https').createServer(credentials, app)
 
 console.log('\n\ngreetings earthlings\nwe runnin shit......\n\n')
 
@@ -67,7 +68,9 @@ io.on('connection', (socket) => {
   })
 })
 
-// http.listen()
+// http.listen(port, () => {
+//   console.log(`server running on port ${port}`)
+// })
 
 https.listen(port, () => {
   console.log(`server running on port ${port}`)
