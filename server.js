@@ -1,5 +1,4 @@
 const app = require('express')()
-const io = require('socket.io')(https)
 const port = process.env.PORT || 3000
 const fs = require('fs')
 const os = require('os')
@@ -16,6 +15,7 @@ const credentials = {
 
 const http = require('http').createServer(app)
 const https = require('https').createServer(credentials, app)
+const io = require('socket.io')(https)
 
 console.log('\n\ngreetings earthlings\nwe runnin shit......\n\n')
 
