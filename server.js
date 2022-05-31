@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
 
 const users = {}
 console.log('users:', users)
+const userList = document.getElementById('users')
+const getUsers = () => {
+  userList = users
+}
+
 
 function currentTime() {
   var now = new Date()
