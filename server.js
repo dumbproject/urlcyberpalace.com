@@ -1,8 +1,20 @@
 const app = require('express')()
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
+const http = require('http').createServer(app)
+const https = require('https').createServer(credentials, app)
+const io = require('socket.io')(https)
 const port = process.env.PORT || 3000
-var os = require('os');
+const fs = require('fs')
+const os = require('os')
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/urlcyberpalace.com/privkey.pem', 'utf8')
+const certificate = fs.readFileSync('/etc/letsencrypt/live/urlcyberpalace.com/cert.pem', 'utf8')
+const ca = fs.readFileSync('/etc/letsencrypt/live/urlcyberpalace.com/chain.pem', 'utf8')
+
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  ca: ca
+}
 
 console.log('\n\ngreetings earthlings\nwe runnin shit......\n\n')
 
@@ -55,6 +67,8 @@ io.on('connection', (socket) => {
   })
 })
 
-http.listen(port, () => {
+// http.listen()
+
+https.listen(port, () => {
   console.log(`server running on port ${port}`)
 })
