@@ -30,10 +30,10 @@ app.get('/home.html', (req, res) => {
 
 const users = {}
 console.log('users:', users)
-const userList = document.getElementById('users')
-const getUsers = () => {
-  userList = users
-}
+// const userList = document.getElementById('users')
+// const getUsers = () => {
+//   userList = users
+// }
 
 
 function currentTime() {
