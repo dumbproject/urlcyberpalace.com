@@ -1,0 +1,5 @@
+User-agent: Googlebot
+Disallow: /node_modules/
+
+User-agent: *
+Allow: /
