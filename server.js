@@ -3,6 +3,8 @@ const port = process.env.PORT || 3000
 const fs = require('fs')
 const os = require('os')
 
+const d = new Date()
+
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/urlcyberpalace.com/privkey.pem', 'utf8')
 const certificate = fs.readFileSync('/etc/letsencrypt/live/urlcyberpalace.com/cert.pem', 'utf8')
 const ca = fs.readFileSync('/etc/letsencrypt/live/urlcyberpalace.com/chain.pem', 'utf8')
@@ -17,11 +19,11 @@ const http = require('http').createServer(app)
 const https = require('https').createServer(credentials, app)
 const io = require('socket.io')(https)
 
-console.log('\n\ngreetings earthlings\nwe runnin shit......\n\n')
+console.log('\n==> greetings earthlings <==\n==> ...we runnin shit... <==\n\n*** started server on ' + d + ' ***')
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
-  console.log('### a new user connected to the site')
+  console.log('\n>>> new user connected to site <<<\n>>> client ip: ', JSON.stringify(req.header('X-Forwarded-For')), ' <<<\n')
 })
 app.get('/home.html', (req, res) => {
   res.sendFile(__dirname + '/home.html')
@@ -29,7 +31,9 @@ app.get('/home.html', (req, res) => {
 })
 
 const users = {}
-console.log('users:', users)
+// this does nothing; server starts without users
+// console.log('users:', users)
+
 // const userList = document.getElementById('users')
 // const getUsers = () => {
 //   userList = users
@@ -47,8 +51,12 @@ function currentTime() {
 
 
 io.on('connection', (socket) => {
-  var clientIp = socket.request.connection.remoteAddress
-  console.log(clientIp)
+
+  // all of this doesn't work because i'm rerouting the https to http??
+  // it's only telling me ip and os info about the server, not the client
+  //
+  // var clientIp = socket.request.connection.remoteAddress
+  // console.log('client ip: ', clientIp)
   // console.log(os.type())
   // console.log(os.release())
   // console.log(os.platform())
@@ -56,8 +64,7 @@ io.on('connection', (socket) => {
   socket.on('new-user', name => {
     users[socket.id] = name
     socket.broadcast.emit('user-connected', name)
-    console.log('### user connected:', name, '\n### socket.id:', socket.id)
-    console.log('total users:', users)
+    console.log('### user connected:', name, '(socket.id:', socket.id, ')\n### total users:', users)
   })
 
   socket.on('chat message', message => {
@@ -78,5 +85,5 @@ io.on('connection', (socket) => {
 // })
 
 https.listen(port, () => {
-  console.log(`server running on port ${port}`)
+  console.log(`*** server running on port ${port} ***\n`)
 })
