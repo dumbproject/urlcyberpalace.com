@@ -2,5 +2,7 @@ node_modules
 package-lock.json
 .replit
 log.txt
+ip.txt
+unique.txt
 deprecated/
 logging/

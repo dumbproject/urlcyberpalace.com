@@ -51,10 +51,8 @@ function currentTime() {
 
 
 io.on('connection', (socket) => {
-
   // all of this doesn't work because i'm rerouting the https to http??
   // it's only telling me ip and os info about the server, not the client
-  //
   // var clientIp = socket.request.connection.remoteAddress
   // console.log('client ip: ', clientIp)
   // console.log(os.type())
