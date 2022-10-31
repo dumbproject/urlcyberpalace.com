@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <script src="server.js" defer></script> -->
     <title>chat</title>
+    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
     <style>
       body { background-color: gray; margin: 0; padding-bottom: 3rem; font-family: "Lucida Console" }
 
@@ -61,7 +62,8 @@
       <form id="form" action="">
         <input id="input" autocomplete="off" autofocus /><button>Send</button>
       </form>
-      <script src="https://urlcyberpalace.com:3000/socket.io/socket.io.js"></script>
+      <!-- <script src="/socket.io/socket.io.js"></script> -->
+      <!-- <script src="https://urlcyberpalace.com:3000/socket.io/socket.io.js"></script> -->
     </div>
     <!-- <div>
       <ul id="users"></ul>
@@ -69,7 +71,7 @@
 
     <!-- <script defer src="/client.js"></script> -->
     <script>
-      var socket = io()
+      const socket = io()
 
       var messages = document.getElementById('messages')
       var form = document.getElementById('form')
