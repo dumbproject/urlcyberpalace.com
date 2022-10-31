@@ -15,7 +15,6 @@ const credentials = {
   ca: ca
 }
 
-const http = require('http').createServer(app)
 const https = require('https').createServer(credentials, app)
 const io = require('socket.io')(https)
 
@@ -23,11 +22,11 @@ console.log('\n==> greetings earthlings <==\n==> ...we runnin shit... <==\n\n***
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
-  console.log('\n>>> new user connected to site <<<\n>>> client ip: ', JSON.stringify(req.header('X-Forwarded-For')), ' <<<\n')
+//  console.log('\n>>> new user connected to site <<<\n>>> client ip: ', JSON.stringify(req.header('X-Forwarded-For')), ' <<<\n')
 })
+
 app.get('/home.html', (req, res) => {
   res.sendFile(__dirname + '/home.html')
-  // console.log('### a new user connected to the site')
 })
 
 const users = {}
@@ -39,7 +38,6 @@ const users = {}
 //   userList = users
 // }
 
-
 function currentTime() {
   var now = new Date()
   , hours = ('0' + now.getHours()).slice(-2)
@@ -48,7 +46,6 @@ function currentTime() {
   , time = [hours, minutes, seconds].join(':')
   return time
 }
-
 
 io.on('connection', (socket) => {
   // all of this doesn't work because i'm rerouting the https to http??
@@ -77,10 +74,6 @@ io.on('connection', (socket) => {
     delete users[socket.id]
   })
 })
-
-// http.listen(port, () => {
-//   console.log(`server running on port ${port}`)
-// })
 
 https.listen(port, () => {
   console.log(`*** server running on port ${port} ***\n`)
