@@ -8,3 +8,4 @@ deprecated/
 logging/
 run.sh
 npm-debug.log
+ip.sh
