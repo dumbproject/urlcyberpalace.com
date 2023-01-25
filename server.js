@@ -22,7 +22,7 @@ console.log('\n==> greetings earthlings <==\n==> ...we runnin shit... <==\n\n***
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
-//  console.log('\n>>> new user connected to site <<<\n>>> client ip: ', JSON.stringify(req.header('X-Forwarded-For')), ' <<<\n')
+  console.log('\n>>> new user connected to site <<<\n>>> client ip: ', JSON.stringify(req.header('X-Forwarded-For')), ' <<<\n')
 })
 
 app.get('/home.html', (req, res) => {
@@ -50,8 +50,8 @@ function currentTime() {
 io.on('connection', (socket) => {
   // all of this doesn't work because i'm rerouting the https to http??
   // it's only telling me ip and os info about the server, not the client
-  // var clientIp = socket.request.connection.remoteAddress
-  // console.log('client ip: ', clientIp)
+   var clientIp = socket.request.connection.remoteAddress
+   console.log('client ip: ', clientIp)
   // console.log(os.type())
   // console.log(os.release())
   // console.log(os.platform())
