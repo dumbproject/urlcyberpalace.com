@@ -7,3 +7,4 @@ unique.txt
 deprecated/
 logging/
 run.sh
+npm-debug.log

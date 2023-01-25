@@ -1,110 +1,12 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <script src="server.js" defer></script> -->
-    <title>chat</title>
-    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
-    <style>
-      body { background-color: gray; margin: 0; padding-bottom: 3rem; font-family: "Lucida Console" }
+<head>
+<title>
+  welcome
+</title>
+</head>
+<body>
 
-      #form {
-        background-color: gray;
-        padding: 0.25rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        height: 3rem;
-        box-sizing: border-box;
-        backdrop-filter: blur(10px);
-      }
-      #input {
-        background-color: black;
-        color: white;
-        border: none;
-        padding: 0 1rem;
-        flex-grow: 1;
-        border-radius: 2rem;
-        margin: 0.25rem;
-      }
-      #input:focus {
-        outline: none;
-      }
-      #form > button {
-        background: #333;
-        border: none;
-        padding: 0 1rem;
-        margin: 0.25rem;
-        border-radius: 3px;
-        outline: none;
-        color: #fff;
-      }
+  suck my dick
 
-      #messages {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      #messages > li {
-        padding: 0.5rem 1rem;
-      }
-      /* #messages > li:nth-child(odd) {
-        background: #efefef;
-      } */
-    </style>
-  </head>
-  <body>
-    <div>
-      <ul id="messages"></ul>
-      <form id="form" action="">
-        <input id="input" autocomplete="off" autofocus /><button>Send</button>
-      </form>
-      <!-- <script src="/socket.io/socket.io.js"></script> -->
-      <!-- <script src="https://urlcyberpalace.com:3000/socket.io/socket.io.js"></script> -->
-    </div>
-    <!-- <div>
-      <ul id="users"></ul>
-    </div> -->
-
-    <!-- <script defer src="/client.js"></script> -->
-    <script>
-      const socket = io()
-
-      var messages = document.getElementById('messages')
-      var form = document.getElementById('form')
-      var input = document.getElementById('input')
-
-      const name = prompt('What is your name?')
-      appendMessage(`You joined as user ${name}`)
-      socket.emit('new-user', name)
-
-      // function inputFocus() {
-      //     document.getElementById("input").focus()
-      // }
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault()
-        if (input.value) {
-          socket.emit('chat message', input.value)
-          input.value = ''
-        }
-      })
-
-      socket.on('chat message', function(msg) {
-        var item = document.createElement('li')
-        item.textContent = msg
-        messages.appendChild(item)
-        window.scrollTo(0, document.body.scrollHeight)
-      })
-
-      function appendMessage(message) {
-        const messageElement = document.createElement('li')
-        messageElement.innerText = message
-        messages.append(messageElement)
-      }
-    </script>
-  </body>
+</body>
 </html>
